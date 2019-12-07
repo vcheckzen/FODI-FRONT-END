@@ -10,10 +10,10 @@
             SCF_GATEWAY: "",
             SITE_NAME: "FODI"
         };
-
-        if (location.protocol === 'http:') {
-            location.href = location.href.replace(/http/, 'https');
-        }
+        window.GLOBAL_CONFIG.SCF_GATEWAY += '/fodi/'
+        // if (location.protocol === 'http:') {
+        //     location.href = location.href.replace(/http/, 'https');
+        // }
     </script>
     <meta charset="utf-8">
     <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
@@ -1210,7 +1210,7 @@
                 url: window.GLOBAL_CONFIG.SCF_GATEWAY,
                 method: 'POST',
                 formatPayload: (path, passwd) => {
-                    return 'path=' + encodeURIComponent(path) +
+                    return '?path=' + encodeURIComponent(path) +
                         '&encrypted=' + window.api.accessToken.encrypted +
                         '&plain=' + window.api.accessToken.plain +
                         '&passwd=' + passwd;
