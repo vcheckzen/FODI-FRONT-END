@@ -11,7 +11,8 @@
             SITE_NAME: "FODI"
         };
         if (window.GLOBAL_CONFIG.SCF_GATEWAY.indexOf('workers') === -1) {
-            window.GLOBAL_CONFIG.SCF_GATEWAY += '/fodi/'
+            window.GLOBAL_CONFIG.SCF_GATEWAY += '/fodi/';
+            window.GLOBAL_CONFIG.IS_CF = true;
         }
         // if (location.protocol === 'http:') {
         //     location.href = location.href.replace(/http/, 'https');
@@ -1228,20 +1229,25 @@
             }
             window.fileCache = new Map();
             const initialPath = new URLSearchParams(window.location.search).get('path') || window.api.root;
-            sendRequest(window.api.method,
-                window.api.url + '?accessToken',
-                null,
-                window.api.headers,
-                data => {
-                    const accessToken = JSON.parse(data);
-                    window.api.accessToken = {
-                        encrypted: accessToken.encrypted,
-                        plain: accessToken.plain
-                    };
-                    fetchFileList(initialPath);
-                    addBackForwardListener();
-                }
-            );
+            if (window.GLOBAL_CONFIG.IS_CF) {
+                fetchFileList(initialPath);
+                addBackForwardListener();
+            } else {
+                sendRequest(window.api.method,
+                    window.api.url + '?accessToken',
+                    null,
+                    window.api.headers,
+                    data => {
+                        const accessToken = JSON.parse(data);
+                        window.api.accessToken = {
+                            encrypted: accessToken.encrypted,
+                            plain: accessToken.plain
+                        };
+                        fetchFileList(initialPath);
+                        addBackForwardListener();
+                    }
+                );
+            }
         });
     </script>
 </head>
