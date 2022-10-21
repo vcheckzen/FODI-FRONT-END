@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+  <meta charset="UTF-8">
+  <title>高斯背景模糊效果（毛玻璃）</title>
+  <style>
+    .box{
+      width: 1000px;
+      height: 610px;
+      background: url('.jpg'); no-repeat: 100% 100%;
+      background-size: cover;
+      position: relative;
+    }
+    .content{
+      height: 80%;
+      width: 80%;
+      background: white;
+      position: absolute;
+      /*left: 40%;*/
+      /*top: 30%;*/
+      /*margin-left: -20%;*/
+      /*margin-top: -10%;*/
+      border-radius: 2px;
+    }
+    /* filter是对该元素的模糊，因此对content添加并模糊伪元素，并定位到content的下层，而不是直接修改背景图或content的样式 */
+    .content::before{
+      content: '';
+      position: absolute;
+      top:0;right:0;bottom:0;left:0;
+      filter: blur(3px);
+      margin:-21px;
+      background: url('//yiuma-drive.yiuma.workers.dev?file=/Pictures/%E7%94%B5%E8%84%91%E5%A3%81%E7%BA%B8/%E8%B4%BC%E6%B8%85%E6%99%B0/04c658bfa3a5d75ab3e2fb91bf202143.jpg'); no-repeat: 100% 100%;
+      background-size: cover;
+      opacity: .8;
+    }
+    .content p{
+      padding: 20px 15px;
+      color: white;
+      text-indent: 20px;
+      font-size: 14px;
+      line-height: 28px;
+      letter-spacing: 1px;
+      /* 清除子元素对父元素filter属性值的继承 */
+      filter: blur(0);
+    }
+  </style>
+</head>
+<body>
+<div class="box">
+  <div class="content">
+    <p>高斯模糊文字介绍的,高斯模糊文字介绍的高斯模糊,文字介绍的,高斯模糊文字介绍的高斯模糊。文字介绍的高斯模糊，文字介绍的--红叶都枫了红叶都枫了红叶都枫了@163</p>
+  </div>
+</div>
+</body>
+</html>
