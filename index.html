@@ -232,11 +232,12 @@
       }
 
       .file-upload-progress {
-        margin-top: 1em;
+        margin: 1em 0;
         padding: 1em;
         background-color: rgb(245, 245, 245);
-        overflow: auto;
         white-space: nowrap;
+        width: fit-content;
+        min-width: 100%;
         display: grid;
       }
 
@@ -261,17 +262,23 @@
       }
 
       .preview {
-        /* display: none; */
         font-size: 0.8em;
         height: 100%;
       }
 
-      .content {
+      .preview .content {
         clear: both;
-        padding: 0 1em;
+        padding: 0 1em 1em 1em;
         margin: 0 auto;
-        height: calc(100% - 11em);
-        /* text-align: center; */
+        width: fit-content;
+        height: fit-content;
+        min-width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .preview .content pre {
+        margin: 0;
       }
 
       .file-name {
@@ -1277,7 +1284,7 @@
                 if (document.body.clientWidth >= 480) {
                   let iframe = document.createElement('iframe');
                   iframe.width = '100%';
-                  iframe.style.height = '100%';
+                  iframe.style.aspectRatio = '16 / 9';
                   iframe.style.border = '0';
                   iframe.src = officeOnline;
                   content.appendChild(iframe);
@@ -1301,7 +1308,7 @@
                 if (document.body.clientWidth >= 480) {
                   let pdfIframe = document.createElement('iframe');
                   pdfIframe.width = '100%';
-                  pdfIframe.style.height = '100%';
+                  pdfIframe.style.aspectRatio = '16 / 9';
                   pdfIframe.style.border = '0';
                   pdfIframe.src = pdfOnline;
                   content.appendChild(pdfIframe);
@@ -1312,7 +1319,7 @@
                   const pre = document.createElement('pre');
                   pre.style.background = 'rgb(245,245,245)';
                   pre.style.padding = '5px';
-                  pre.style['overflow-x'] = 'auto';
+                  // pre.style['overflow-x'] = 'auto';
                   content.style.textAlign = 'initial';
                   content.innerHTML = '';
                   content.append(pre);
