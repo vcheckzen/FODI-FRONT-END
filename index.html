@@ -1215,7 +1215,7 @@
                   });
                 });
               },
-              fallback: (msg) => {
+              fallback: (msg = '预览失败') => {
                 const textWrapper = document.createElement('div');
                 textWrapper.style.textAlign = 'center';
                 textWrapper.innerHTML = msg;
@@ -1278,7 +1278,7 @@
                     content.innerHTML = '';
                     content.append(fancy);
                   })
-                  .catch((_) => previewHandler.fallback('预览失败'));
+                  .catch(previewHandler.fallback);
                 break;
               case 'markdown':
                 renderMarkdown(path, url);
@@ -1332,7 +1332,7 @@
                       }
                     });
                   })
-                  .catch((_) => previewHandler.fallback('预览失败'));
+                  .catch(previewHandler.fallback);
                 break;
               case 'video':
                 const video = document.createElement('div');
@@ -1343,7 +1343,7 @@
                     content.append(video);
                     previewHandler.scrollToBottom();
                   })
-                  .catch((_) => previewHandler.fallback('预览失败'));
+                  .catch(previewHandler.fallback);
                 break;
               case 'videomagnet':
                 fetch(url)
@@ -1372,7 +1372,7 @@
                       previewHandler.scrollToBottom();
                     });
                   })
-                  .catch((_) => previewHandler.fallback('预览失败'));
+                  .catch(previewHandler.fallback);
                 break;
               default:
                 previewHandler.fallback('该文件不支持预览');
