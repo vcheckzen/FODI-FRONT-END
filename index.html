@@ -988,13 +988,11 @@
             const absPath = new URL(href, dummyBase).href.slice(
               location.origin.length
             );
-
-            const containingPath = (path) =>
-              path.slice(0, path.lastIndexOf('/')) || '/';
+            const parent = absPath.slice(0, absPath.lastIndexOf('/')) || '/';
 
             return (
               window.fileCache
-                .get(containingPath(absPath))
+                .get(parent)
                 ?.files.find(({ name }) => name === absPath.split('/').pop())
                 ?.url ||
               window.GLOBAL_CONFIG.SCF_GATEWAY.replace(/\/$/, '') + absPath
