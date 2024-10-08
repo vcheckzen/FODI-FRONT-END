@@ -997,7 +997,7 @@
                 .get(containingPath(absPath))
                 ?.files.find(({ name }) => name === absPath.split('/').pop())
                 ?.url ||
-              window.GLOBAL_CONFIG.SCF_GATEWAY.replace('/$', '') + absPath
+              window.GLOBAL_CONFIG.SCF_GATEWAY.replace(/\/$/, '') + absPath
             );
           };
 
