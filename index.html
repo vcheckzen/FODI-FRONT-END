@@ -988,7 +988,6 @@
             listContainer.replaceChildren(fragment);
           } else {
             stat.observer.disconnect();
-            console.log(listContainer.lastElementChild);
             listContainer.removeChild(listContainer.lastElementChild); // Marker
             listContainer.lastElementChild.style.backgroundColor = '#f1f1f1';
             listContainer.appendChild(fragment);
