@@ -988,14 +988,11 @@
             listContainer.replaceChildren(fragment);
           } else {
             stat.observer.disconnect();
-            listContainer.removeChild(listContainer.lastElementChild); // Marker
             listContainer.lastElementChild.style.backgroundColor = '#f1f1f1';
             listContainer.appendChild(fragment);
           }
           if (stat.renderedItems < stat.children.length) {
-            const loadingMarker = document.createElement('div');
-            listContainer.appendChild(loadingMarker);
-            stat.observer.observe(loadingMarker);
+            stat.observer.observe(listContainer.lastElementChild);
           }
         }
       }
